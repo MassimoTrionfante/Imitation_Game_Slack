@@ -1,0 +1,292 @@
+
+partegrigia {
+position: absolute;
+z-index:-1;
+top: 480px;
+display: block;
+width: 8300px;
+height: 400px;
+background-color: #E0E0E0;
+}
+
+partegrigia2 {
+position: relative;
+z-index:-1;
+top: 10px;
+padding: 20px 100%;
+background-color: #E0E0E0;
+}
+
+partegrigia3 {
+position: relative;
+z-index:-1;
+top: 30px;
+padding: 600px 50%;
+background-color: #E0E0E0;
+}
+
+partegrigia4 {
+position: relative;
+z-index: -1;
+top: 1000px;
+padding: 20px 50%;
+background-color: #E0E0E0;
+color: #202020;
+}
+
+.iconalasck {
+-webkit-transform: rotate(-15deg);
+position: relative;
+top: 975px;
+left: 10%;
+color: #E0E0E0;
+background-color: #505050;
+font-size: 30px;
+width: 32px;
+height: 37px;
+border-radius: 10px;
+cursor: pointer;
+text-align: center;
+}
+
+.iconalasck:hover {
+background-color: #202020;
+color: #D0D0D0;
+}
+
+closebutton {
+border: none;
+color: white;
+background-color: none;
+cursor: pointer;
+margin-left: 240px;
+}
+
+usaicookie {
+overflow:auto;
+bottom:0;
+right:0;
+vertical-align: middle;
+background-color: #503040;
+position: fixed;
+color: white;
+width: 250px;
+height: 110px;
+padding: 3px 5px;
+font-size: 13px;
+border-radius: 10px;
+bottom: 15px;
+right: 15px;
+}
+
+usaicookie a:link, a:visited, a:hover, a:active {
+color: white;
+}
+
+input[type=text], input[type=password] {
+border: 1px solid #E0E0E0;
+border-radius: 3px;
+font-size: 13px;
+color: #A0A0A0;
+width: 40%;
+padding: 0px 10px;
+height: 40px;
+vertical-align: center;
+}
+
+input[type=text]:focus {
+border: 1px solid #3030C0;
+}
+
+@keyframes getstartanim {
+from {
+background-color: #2020FF;
+border: 1px solid #2020FF;
+}
+to {
+background-color: #000088;
+border: 1px solid #000088;
+}
+}
+
+.getstarted {
+padding: 10px 18px;
+border: 1px solid #2020FF;
+background-color: #2020FF;
+color: white;
+text-align: center;
+border-radius: 3px;
+cursor: pointer;
+font-size: 13px;
+}
+
+.getstarted:hover {
+background-color: #000088;
+border: 1px solid #000088;
+animation-name: getstartanim;
+animation-duration: 0.2s; 
+}
+
+barra#miabarra {
+z-index: 1;
+color: #302020;
+width: 100%;
+background-color: #F0F0F0;
+position: fixed;
+}
+
+barra a:link, a:visited {
+color: #303030;
+text-decoration: none; 
+}
+
+barra a:hover, a:active {
+color: #202050;
+text-decoration: none;
+}
+
+miofooter a:link, a:visited {
+color: #303030;
+text-decoration: none;
+}
+
+miofooter a:hover, a:active {
+color: #202050;
+text-decoration: none;
+}
+
+table#sponsor {
+border-collapse: collapse;
+border: 0px solid #C0C0C0;
+width: 60%;
+text-align: center;
+}
+
+tr#sponsor, td#sponsor {
+border-collapse: collapse;
+border: 1px solid #C0C0C0;
+padding: 10px;
+font-size: 30px;
+color: #404040;
+cursor: context-menu;
+}
+
+table#tryfree {
+padding: 10px;
+}
+
+td#tryfree {
+padding: 100px;
+}
+
+imagehappens
+{
+padding: 20px;
+margin: 20px;
+}
+
+workhappens
+{
+text-align: left;
+font-size: 60px;
+color: #202020;
+padding: 5px;
+}
+
+workdesc
+{
+text-align: left;
+font-size: 23px;
+color: #202020;
+}
+
+body {
+margin: 0px;
+overflow-x: hidden;
+}
+
+a:link, a:hover, a:active, a:visited {
+color:#2020F0;
+}
+
+@keyframes discwhyani {
+from
+{border: 1px solid #4040D0;}
+to
+{border: 3px solid #4040D0;}
+
+}
+
+discoverwhy {
+border: 1px solid #4040D0;
+border-radius: 3px;
+background-color: #FFFFFF;
+color: #2020FF;
+padding: 15px 20px;
+text-align: center;
+vertical-align: center;
+}
+
+discoverwhy:hover {
+border: 3px solid #4040D0;
+animation-name: discwhyani;
+animation-duration: 0.2s;
+cursor: pointer;
+}
+
+table#linkfooter
+{
+color: #404040;
+/*position: absolute;*/
+text-align: left;
+vertical-align: center;
+}
+
+td#lf
+{
+padding: 10px;
+font-size: 10px;
+}
+
+
+loginbox {
+position: absolute;
+z-index: -1;
+top: 150px;
+left: 50%;
+transform: translateX(-50%);
+text-align: center;
+border: 1px solid #C0C0C0;
+background-color: white;
+border-radius: 3px;
+padding: 40px 30px;
+}
+
+continue {
+position: absolute;
+text-align: center;
+color: white;
+left: 50%;
+transform: translateX(-50%);
+background-color: #107020;
+border-radius: 3px;
+padding: 10px 71px;
+}
+
+a#continue {
+color:white;
+text-decoration:none;
+}
+
+a#nodeco {
+text-decoration: none;
+}
+
+a#fot {
+text-decoration: none;
+color: #303030;
+}
+
+a:hover#fot {
+color: #606060;
+}

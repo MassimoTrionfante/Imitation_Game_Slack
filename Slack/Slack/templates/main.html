@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title></title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='main.css')}}">
+</head>
+<body onload="settaDomain()">
+
+<!-- Robe della notifica desktop -->
+
+<span id="deskcol" class="desktopnotif" style="background-color:#2050FF;">
+<span id="desknot" style="position: absolute; top:7px; left:50%; transform:translateX(-50%);">
+Lasck&nbspneeds&nbspyour&nbsppermission&nbspto&nbsp<u style="cursor:pointer">enable&nbspdesktop&nbspnotifications</u>.</span>
+<span class="closeicon" onclick="desktopnotif()">X</span>
+</span>
+
+
+<!-- robe della barra bianca sopra la chat -->
+<span class="barrabiancasopra">
+<span class="blocco1">
+<b><span id="nomecanale" style="font-size:20px;"># Canale 1</span></b><br>
+<span style="font-size:12px; color:#909090;">
+<span class="giallo"><span class="fa fa-star"></span></span>
+|
+<span class="blu"><span class="fa fa-user"></span> 1</span> | 
+<span class="blu"><span class="fa fa-map-pin"></span> 0</span> | 
+<span class="addtopic"><span class="fa fa-pencil"></span> Add topic</span>
+</span>
+
+</span>
+<span class="blocco2">
+<span class="blu"><span class="fa fa-phone"></span></span> | 
+<span class="blu"><span class="fa fa-info-circle"></span></span> | 
+<span class="blu"><span class="fa fa-cog"></span></span> | 
+<input id="search" type="text" placeholder="Search"></input> | 
+<span class="rosso"><b>@</b></span> | 
+<span class="giallo"><span class="fa fa-star"></span></span> | 
+<span class="blu"><span class="fa fa-ellipsis-v"></span></span>
+</span>
+</span>
+<span class="barrabiancasopra" id="linea"></span>
+
+<!-- robe della barra laterale -->
+<span class="barralaterale">
+
+<span class="cella">
+
+<span id="nomedomain" style="font-size:15px; padding: 12px 12px;">
+</span>
+<span class="tranico">
+&#9207
+</span>
+
+<span class="tranico" style="padding:5px 5px;">
+<span class="fa fa-bell-o" style="font-size:14px;"></span>
+</span>
+<br>
+
+<span class="activitydot">
+<span id="activitydot" style="color: #00F0C0; opacity:0.5">
+&#x25CF</span> <b><span id="nomeUtente">NomeUtente</span></b>
+</span>
+</span>
+<br>
+<span class="cella" style="font-size:15px; padding: 5px 15px;">
+<b><span class="fa fa-comment"></span> All Threads</b>
+</span>
+
+<span class="cella" style="top:10px; font-size:15px; padding: 5px 15px;">
+<b>Channels</b>
+
+<span id="addchannel" class="tranico" onclick="aggiungiCanale()">&#x2295</span>
+</span>
+
+<br>
+
+<span id="CANALI"> <!-- Qui è dove si aggiungono i canali -->
+<span id="# Canale 1" class="channelAttivo" onclick="attivaCanale(this)">
+# Canale 1
+</span>
+
+<span id="# Canale 2" class="channel" onclick="attivaCanale(this)">
+# Canale 2
+</span>
+
+</span>
+
+<!-- -->
+
+<span class="cella" style="top: 15px; font-size: 15px; padding:5px 15px;">
+<b>Direct Messages</b>
+
+<span class="tranico">&#x2295</span>
+</span>
+<br>
+
+<span class="channel">
+<span style="font-size:10px; color:#00F0C0; opacity:0.5">&#9829</span>
+lasckbot
+</span>
+
+<span class="channel">
+<span style="font-size:10px; color:#00F0C0; opacity:0.5">&#x25CF</span>
+NomeUtente <span style="opacity:0.5;">(you)</span>
+</span>
+
+<span class="cella" style="top: 15px; font-size: 15px; padding: 5px 15px;">
+<span class="tranico">+</span>
+<b>Invite people</b>
+</span>
+
+<span class="cella" style="top: 15px; font-size: 15px; padding: 5px 15px;">
+Apps <span class="tranico">&#x2295</span>
+</span>
+</span>
+
+<!-- robe per i messaggi -->
+<span class="bloccomessaggi" id="bloccomessaggi">
+<!-- APPENDI QUI DENTRO! -->
+<!-- Ogni canale ha un suo blocco id del tipo "iMessaggi + id del canale -->
+<!-- i.e. id del canale 1 sarà "imessaggi# Canale 1" -->
+
+<span class="messaggi" id="iMessaggi# Canale 1"></span>
+<span class="messaggi" id="iMessaggi# Canale 2"></span>
+</span>
+
+
+<!-- robe della barra per mandare i messaggi -->
+<input id="chat" type="text" onkeypress="aggiungiMessaggio(event)">
+<span class="bottonechat">+
+<input type="file" id="catturaImmagine" class="hiddenInputButton" onchange="mostraImmagine()">
+</input>
+</span>
+</input>
+
+<script src="{{url_for('static',filename='mieiscript.js')}}"></script>
+</body>
+</html>
