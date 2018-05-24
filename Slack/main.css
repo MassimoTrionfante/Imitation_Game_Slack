@@ -1,0 +1,269 @@
+body {
+margin: 0px 0px;
+}
+
+.hiddenInputButton {
+cursor: pointer;
+height:30px;
+position: fixed;
+opacity: 0;
+bottom: 12px;
+left: 220px;
+font-size:0px;
+}
+
+.desktopnotif {
+z-index: 1;
+position: absolute;
+height: 30px;
+width: 100%;
+/*background-color: #2050FF;*/
+color: white;
+}
+
+.closeicon {
+z-index: 1;
+position: absolute;
+top: 7px;
+left: 98%;
+border: 1px solid white;
+border-radius: 10px;
+padding: 1px 2px;
+text-align: center;
+color: white;
+font-size: 8px;
+cursor: pointer;
+}
+
+.barralaterale {
+-webkit-touch-callout:none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select: none;
+
+overflow-y: auto;
+overflow-x: hidden;
+
+position: fixed;
+height: 100%;
+width: 200px;
+background-color: #504060;
+color: white;
+}
+
+.channel {
+position: relative;
+font-size: 15px;
+padding: 2px 15px;
+cursor: pointer;
+width: auto;
+display: block;
+background-color: #504060;
+opacity: 0.75;
+}
+
+.channel:hover {
+opacity: 1;
+background-color: #403050;
+}
+
+.channelAttivo {
+position: relative;
+font-size: 15px;
+padding: 2px 15px;
+cursor: pointer;
+width: auto;
+display: block;
+background-color: #30C0FF;
+opacity: 1;
+}
+
+.pressed {
+position: relative;
+font-size: 15px;
+padding: 2px 15px;
+cursor: pointer;
+width: auto;
+display: block;
+background-color: #00D090;
+}
+
+.cella {
+position: relative;
+background-color: #504060;
+font-size: 20px;
+cursor: pointer;
+width: auto;
+display: block;
+opacity: 0.75;
+}
+
+.cella:hover {
+opacity: 1;
+background-color: #403050;
+}
+
+.tranico {
+opacity: 0.5;
+}
+
+.tranico:hover {
+opacity: 1.0;
+}
+
+.activitydot {
+font-size: 10px;
+padding-left: 20px;
+}
+
+input#chat {
+position: fixed;
+bottom: 10px;
+left: 249px;
+overflow: auto;
+border: 2px solid #909090;
+border-bottom-right-radius: 7px;
+border-top-right-radius: 7px;
+padding: 5px 5px;
+width: 80%;
+height: 21px;
+font-size: 20px;
+}
+
+input#search {
+border: 1px solid #808080;
+height: 1px;
+padding: 15px 3px;
+border-radius: 5px;
+}
+input:hover#search {
+border: 1px solid #606060;
+}
+
+.bottonechat {
+border: 2px solid #909090;
+color: #909090;
+border-bottom-left-radius: 7px;
+border-top-left-radius: 7px;
+font-size: 20px;
+overflow:auto;
+height: 21px;
+position: fixed;
+padding: 5px 5px;
+bottom: 10px;
+left: 220px;
+text-align: center;
+background-color: #FFFFFF;
+}
+
+.bottonechat:hover {
+color: #FFFFFF;
+border: 2px solid #40C060;
+background-color: #80F090;
+}
+
+.barrabiancasopra {
+position: fixed;
+left: 200px;
+background-color: #FFFFFF;
+width: 100%;
+padding: 5px 5px;
+height: 50px;
+}
+
+.barrabiancasopra#linea {
+background-color: #E0E0E0;
+padding: 0px 0px;
+top:60px;
+height: 1px;
+}
+
+.blocco1 {
+-webkit-touch-callout:none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select: none;
+
+
+position: fixed;
+display: block;
+padding: 5px 5px;
+}
+
+.blocco2 {
+p-webkit-touch-callout:none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select: none;
+
+position: fixed;
+display: block;
+right: 15px;
+font-size: 17px;
+color: #FFFFFF;
+padding: 15px 5px;
+}
+
+.giallo {
+color: #808080;
+}
+.giallo:hover {
+color: #F0C020;
+cursor: pointer;
+}
+
+.blu {
+color: #808080;
+}
+.blu:hover {
+color: #2040F0;
+cursor: pointer;
+}
+
+.rosso {
+color: #808080;
+}
+.rosso:hover {
+color: #FF2020;
+cursor: pointer;
+}
+
+.addtopic {
+color: #808080;
+padding: 0px 3px;
+border: 1px solid #FFFFFF;
+}
+
+.addtopic:hover {
+border: 1px solid #C0C0C0;
+border-radius: 5px;
+padding: 0px 3px;
+cursor: pointer;
+}
+
+.bloccomessaggi {
+z-index: -90;
+position: fixed;
+display: table-cell;
+top: 60px;
+bottom: 60px;
+left: 240px;
+right: 0px;
+padding: 0px 10px;
+overflow-y: auto;
+overflow-x: break-word;
+font-size: 20px;
+}
+
+.messaggi {
+position: relative;
+height: inherit;
+vertical-align: bottom;
+display: table-cell;
+}
