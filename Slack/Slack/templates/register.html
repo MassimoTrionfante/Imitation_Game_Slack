@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Register | Lasck</title>
-<link rel="stylesheet" type="text/css" href="filecss.css"/>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='filecss.css')}}"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -10,7 +10,7 @@
 
 <barra id="miabarra">
 <imagehappens>
-<img src="Banner.png" alt="Banner" width="70" height="30">
+<img src="{{url_for('static',filename='Banner.png')}}" alt="Banner" width="70" height="30">
 </imagehappens>
 <div id="linkbarra" style="position:absolute; bottom:5px; right:5px;">
 <a href="">Product</a> | 
@@ -29,9 +29,10 @@
 <div style="font-size:30px"><b>Register</div>
 <br>
 <form><input style="height:20px; width:170px;" type="text" placeholder="your-email"><br><br>
+<input style="height:20px; width:170px;" type="text" placeholder="your-workspace-name"><br></br>
 <input style="height:20px; width:170px;" type="text" placeholder="your-nickname"><br><br>
 <input style="height:20px; width:170px;" type="password" placeholder="password"></form><br>
-<continue><b><a id="continue" href="signin.html">Register</a></b></continue><br>
+<continue><b><a id="continue" href="{{url_for('signIn')}}">Register</a></b></continue><br>
 <br><br>
 </loginbox>
 <br><br><br><br>
@@ -94,6 +95,6 @@
 </div>
 
 
-<script src="mieiscript.js"></script>
+<script src="{{url_for('static',filename='mieiscript.js')}}"></script>
 </body>
 </html>
