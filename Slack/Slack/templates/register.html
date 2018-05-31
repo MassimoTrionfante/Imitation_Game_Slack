@@ -28,12 +28,31 @@
 
 <div style="font-size:30px"><b>Register</div>
 <br>
-<form><input style="height:20px; width:170px;" type="text" placeholder="your-email"><br><br>
-<input style="height:20px; width:170px;" type="text" placeholder="your-workspace-name"><br></br>
-<input style="height:20px; width:170px;" type="text" placeholder="your-nickname"><br><br>
-<input style="height:20px; width:170px;" type="password" placeholder="password"></form><br>
-<continue><b><a id="continue" href="{{url_for('signIn')}}">Register</a></b></continue><br>
+<form method="post">
+<input name="email" id="email" 
+style="height:20px; width:170px;"
+type="text" placeholder="your-email" required>
 <br><br>
+<input name="workspace" id="workspace" 
+style="height:20px; width:170px;"
+type="text" placeholder="your-workspace" required>
+<br><br>
+<input name="username" id="username" 
+style="height:20px; width:170px;"
+type="text" placeholder="your-username" required>
+<br><br>
+<input name="nick" id="nick" 
+style="height:20px; width:170px;"
+type="text" placeholder="your-nick (optional)">
+<br><br>
+<input name="password" id="password" 
+style="height:20px; width:170px;"
+type="password" placeholder="your-password" required>
+<br><br>
+
+
+
+<continue><input class="continue" type="submit" value="Register"></form><br>
 </loginbox>
 <br><br><br><br>
 

@@ -27,11 +27,27 @@
 <loginbox>
 
 <div style="font-size:30px"><b>Sign in to your workspace</b></div><br>
-<div style="font-size:12px">Enter your workspace's <b>Lasck URL</b>.</div><br>
-<form><input id="nomeworkspace" style="text-align:right; width: 125px; height: 20px;" type="text" placeholder="your-workspace-url"/>
-<b>.lasck.com</b></form><br>
-<continue onclick="ilnomeworkspace()"><b><a id="continue" href="{{url_for('signInDomain')}}">Continue&nbsp&#8594</a></b></continue>
-<br><br><br><br><br>
+<form method="post">
+<input name="email" id="email" 
+style="height:20px; width:170px;"
+type="text" placeholder="your-email" required>
+<br><br>
+<input name="workspace" id="workspace" 
+style="height:20px; width:170px;"
+type="text" placeholder="your-workspace" required>
+<br><br>
+<input name="password" id="password" 
+style="height:20px; width:170px;"
+type="password" placeholder="your-password" required><br><br>
+<input class="continue" type="submit" value="Login"></form><br>
+
+<br><br>
+
+<!-- Eventual flash errors here -->
+{% for message in get_flashed_messages() %}
+  <span class="flash" style="color:#FF0000">{{ message }}</span>
+{% endfor %}
+<br><br><br>
 Don't know your workspace URL? <a id="nodeco" href="">Find your workspace</a>
 </loginbox>
 

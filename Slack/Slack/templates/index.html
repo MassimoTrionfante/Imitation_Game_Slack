@@ -19,7 +19,7 @@
 <a href="pricing">Pricing</a> | 
 <a href="about">About Us</a> | 
 <a href="get-started">Find Your Workspace</a> | 
-<a href="create" style=
+<a href="{{url_for('register')}}" style=
 "border:1px solid #505050; padding:2px 2px; border-radius:3px;">Create Workspace</a>
 </div>
 </barra>
@@ -37,8 +37,8 @@
 
 <br><br>
 
-<form><input id="mettimail" type="text" placeholder="Email address">
-<span class="getstarted"><b>GET&nbspSTARTED</b></span></form>
+<form method="post"><input id="email" name="email" type="text" placeholder="Email address">
+<input type="submit" class="getstarted" value="GET STARTED"></form>
 <br>
 <span style="font-size:12px">
 Already using Lasck?
@@ -49,6 +49,8 @@ Already using Lasck?
 
 <partegrigia></partegrigia>
 
+<br><br><br>
+
 <center>
 <span style="font-size:30px;"><b>You're in good company</b></span>
 <br><br>
@@ -57,7 +59,7 @@ Millions of people around the world have already made Lasck the place where thei
 
 <discoverwhy><b>DISCOVER&nbspWHY</b></discoverwhy>
 
-<br><br><br><br><br><br>
+<br><br><br><br>
 
 <table id="sponsor">
 <tr id="sponsor">
@@ -76,8 +78,8 @@ Already using Lasck? <a href="signin.html">Sign in</a>.
 </td>
 <td id="tryfree">
 
-<input id="mettimail" type="text" placeholder="Email address">
-<span class="getstarted"><b>GET&nbspSTARTED</b></span>
+<form method="post"><input id="email" name="email" type="text" placeholder="Email address">
+<input type="submit" class="getstarted" value="GET STARTED"></form>
 
 </td>
 
