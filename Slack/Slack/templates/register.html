@@ -26,7 +26,7 @@
 
 <loginbox>
 
-<div style="font-size:30px"><b>Register</div>
+<div style="font-size:30px"><b>Register</b></div>
 <br>
 <form method="post">
 <input name="email" id="email" 
@@ -49,12 +49,13 @@ type="text" placeholder="your-nick (optional)">
 style="height:20px; width:170px;"
 type="password" placeholder="your-password" required>
 <br><br>
-
-
-
 <continue><input class="continue" type="submit" value="Register"></form><br>
 </loginbox>
-<br><br><br><br>
+<br><br>
+{% for message in get_flashed_messages() %}
+  <span class="flash" style="color:#FF0000">{{ message }}</span>
+{% endfor %}
+<br><br>
 
 <div style="position:absolute; top:700px; left:50%; transform:translateX(-50%);">
 <table>

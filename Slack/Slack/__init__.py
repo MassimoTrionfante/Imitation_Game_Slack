@@ -62,16 +62,11 @@ def create_app(test_config=None):
       elif checkpwd is None:
         error= "ERROR: Password is incorrect!"
 
-      if error is None:
-        return "Ok" #TODO link to appropriate chat screen
+      if error is None:                  #TODO aggiungi robe oggetto session + oggetto "g" per mantenere variabili
+        return redirect(url_for('main'))
      
       flash(error)
     return render_template('signin.html')
-
-  #Sign in form 2
- # @app.route('/signindomain')
- # def signInDomain():
- #   return render_template('signindomain.html')
 
   #Main chat
   @app.route('/main')
@@ -88,7 +83,27 @@ def create_app(test_config=None):
       nick=request.form['nick']
       workspace=request.form['workspace']
       password=request.form['password']
-      #insert in database
+
+      if nick is None:
+        nick=request.form['username'] #Nick will be username if nick is null
+
+      #Do various checks before adding to DB:
+      # -block if user is already in that workspace
+      # -block if workspace already exists
+      error=None
+      db=get_db()
+      documento = db.utenti.find_one({'email':email,'workspace':workspace})
+      checkpwd = db.utenti.find_one({'workspace':workspace,'password':password})
+      #Check that user is registered in Lasck + check that workspace exists
+      if documento is not None:
+        error="ERROR: This user is already in the workspace!"
+      elif checkpwd is None:
+        error="ERROR: Wrong password!"
+      if error is None:
+        return redirect(url_for('signIn'))
+     
+      flash(error)
+
       db = get_db()
       db.utenti.insert({"email":email, "username":username,"workspace":workspace, "nick":nick, "password":password})
       print("Added following document:")
@@ -100,7 +115,8 @@ def create_app(test_config=None):
   @app.route('/resetDB')
   def nuke():
     db = get_db()
-    #db.users.remove({})
+    db.utenti.remove({})
+    db.chat.remove({})
     return "Collezioni eliminate!"
 
 
