@@ -6,7 +6,7 @@
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='main.css')}}">
 </head>
-<body OnLoad="document.chat.chat.focus()">
+<body onload="document.chat.chat.focus()">
 
 
 <!-- Robe della notifica desktop
@@ -24,19 +24,21 @@ Lasck&nbspneeds&nbspyour&nbsppermission&nbspto&nbsp<u style="cursor:pointer">ena
 <span style="font-size:12px; color:#909090;">
 <span class="giallo"><span class="fa fa-star"></span></span>
 |
-<span class="blu"><span class="fa fa-user"></span> 1</span> | 
+<span class="blu"><span class="fa fa-user"></span> {{g.numUsers}}</span> | 
 <span class="blu"><span class="fa fa-map-pin"></span> 0</span> | 
 <span class="addtopic"><span class="fa fa-pencil"></span> Add topic</span>
 </span>
 
 </span>
 <span class="blocco2">
+<a style="text-decoration:none;" href="" class="fa fa-refresh"></a> |
 <span class="blu"><span class="fa fa-phone"></span></span> | 
 <span class="blu"><span class="fa fa-info-circle"></span></span> | 
 <span class="blu"><span class="fa fa-cog"></span></span> | 
 <input id="search" type="text" placeholder="Search"></input> | 
 <span class="rosso"><b>@</b></span> | 
 <span class="giallo"><span class="fa fa-star"></span></span> | 
+<a style="text-decoration:none;color:red" href="{{url_for('index')}}" class="fa fa-sign-out"></a> |
 <span class="blu"><span class="fa fa-ellipsis-v"></span></span>
 </span>
 </span>
@@ -128,13 +130,18 @@ Apps <span class="tranico">&#x2295</span>
 <!-- Ogni canale ha un suo blocco id del tipo "iMessaggi + id del canale -->
 <!-- i.e. id del canale 1 sarà "imessaggi# Canale 1" -->
 
-<span class="messaggi" id="iMessaggi# Canale 1"></span>
+<span class="messaggi" id="iMessaggi# Canale 1">
+{% for msgs in g.channelMessages %}
+<span style="color:#707070">[{{msgs['ora']}}]</span> &#60;{% if msgs['autore'] == g.user %}<span style="color:red">{{msgs['autore']}}</span>{% else %}<span style="color:blue">{{msgs['autore']}}</span>{%endif%}&#62; {{msgs['messaggio']}}<br>
+{% endfor %}
+</span>
 <span class="messaggi" id="iMessaggi# Canale 2"></span>
 </span>
 
 
 <!-- robe della barra per mandare i messaggi -->
-<form name="chat"><input name="chat" id="chat" type="text" onkeypress="aggiungiMessaggio(event)">
+<form method="post" name="chat">
+<input name="chat" id="chat" type="text" onfocus="scrollaTutto()">
 <span class="bottonechat">+
 <input type="file" id="catturaImmagine" class="hiddenInputButton" onchange="mostraImmagine()">
 </input>

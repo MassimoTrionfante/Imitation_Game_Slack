@@ -1,6 +1,13 @@
 var original = document.getElementById("linkbarra").innerHTML;
 var counter = 0; //Contatore usato per la barra desktop notif..
 
+// Scrolla in fondo a tutto
+function scrollaTutto()
+{
+var bloccoMessaggi = document.getElementById("bloccomessaggi"); //dove aggiungere il blocco del nuovo canale
+bloccoMessaggi.scrollTop = 99999999999999;
+}
+
 function dainomedomain() /* Associa l'innerHTML al nome domain catturato */
 {
 if (typeof(Storage) !== "undefined")

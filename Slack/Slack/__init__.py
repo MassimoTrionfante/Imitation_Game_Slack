@@ -9,6 +9,7 @@
 import os
 import pprint
 import pymongo
+import time
 from flask import g, Flask, flash, render_template, redirect, request, session, url_for, jsonify
 from pymongo import MongoClient
 
@@ -36,6 +37,7 @@ def create_app(test_config=None):
   #Main page
   @app.route('/', methods=['GET','POST'])
   def index():
+    session.clear() #Session clears at main page, since logout straight brings you in here
     if request.method=='POST':
       return redirect(url_for('register'))
     return render_template('index.html')
@@ -89,12 +91,21 @@ def create_app(test_config=None):
     g.work= docu['workspace']
     g.user= docu['username']
 
+    g.channelMessages = db.canali.find({'workspace':docu['workspace'],'numCanale':1})
+
     #Get list of users to put in purple bar
     g.listUser = db.utenti.find({'workspace':docu['workspace']})
+    g.countUser = db.utenti.find({'workspace':docu['workspace']}) 
+    #Count users inside workspace
+    g.numUsers=0
+    for k in g.countUser:
+      g.numUsers=g.numUsers+1
 
-    if request.method['POST']:
+    #Add sent message
+    if request.method=='POST':
       # Add new message in that channel
-      messaggio = request_form['chat']
+      messaggio = request.form['chat']
+      db.canali.insert({"workspace":docu['workspace'],'numCanale':1,'autore':docu['username'],'messaggio':messaggio,'ora':time.strftime('%H:%M:%S')})
 
     return render_template('main.html')
 
