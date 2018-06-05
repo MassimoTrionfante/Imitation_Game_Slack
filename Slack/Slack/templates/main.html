@@ -6,16 +6,16 @@
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='main.css')}}">
 </head>
-<body>
+<body OnLoad="document.chat.chat.focus()">
 
-<!-- Robe della notifica desktop -->
 
-<span id="deskcol" class="desktopnotif" style="background-color:#2050FF;">
-<span id="desknot" style="position: absolute; top:7px; left:50%; transform:translateX(-50%);">
+<!-- Robe della notifica desktop
+  <span id="deskcol" class="desktopnotif" style="background-color:#2050FF;">
+  <span id="desknot" style="position: absolute; top:7px; left:50%; transform:translateX(-50%);">
 Lasck&nbspneeds&nbspyour&nbsppermission&nbspto&nbsp<u style="cursor:pointer">enable&nbspdesktop&nbspnotifications</u>.</span>
-<span class="closeicon" onclick="desktopnotif()">X</span>
-</span>
-
+  <span class="closeicon" onclick="desktopnotif()">X</span>
+  </span>
+-->
 
 <!-- robe della barra bianca sopra la chat -->
 <span class="barrabiancasopra">
@@ -102,10 +102,15 @@ Lasck&nbspneeds&nbspyour&nbsppermission&nbspto&nbsp<u style="cursor:pointer">ena
 lasckbot
 </span>
 
-<span class="channel">
-<span style="font-size:10px; color:#00F0C0; opacity:0.5">&#x25CF</span>
-NomeUtente <span style="opacity:0.5;">(you)</span>
+{% for utente in g.listUser %}
+  <span class="channel">
+  <span style="font-size:10px; color:#00F0C0; opacity:0.5">&#x25CF</span>
+  {{ utente['username'] }}
+  {% if utente['username'] == g.user %}
+    <span style="opacity:0.5;">(you)</span>
+  {% endif %}
 </span>
+{% endfor %}
 
 <span class="cella" style="top: 15px; font-size: 15px; padding: 5px 15px;">
 <span class="tranico">+</span>
@@ -129,12 +134,12 @@ Apps <span class="tranico">&#x2295</span>
 
 
 <!-- robe della barra per mandare i messaggi -->
-<input id="chat" type="text" onkeypress="aggiungiMessaggio(event)">
+<form name="chat"><input name="chat" id="chat" type="text" onkeypress="aggiungiMessaggio(event)">
 <span class="bottonechat">+
 <input type="file" id="catturaImmagine" class="hiddenInputButton" onchange="mostraImmagine()">
 </input>
 </span>
-</input>
+</input></form>
 
 <script src="{{url_for('static',filename='mieiscript.js')}}"></script>
 </body>

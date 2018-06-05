@@ -1,15 +1,15 @@
-# UTENTI IN db.Lasck.utenti
+# UTENTI IN db.Lasck.utenti (used for the registration/login form)
 # email, username, workspace, nick, password
-
-# CHAT IN db.Lasck.chat
-# workspace, utenti, messaggi, ora
+# CHAT IN db.Lasck.chat (used for loading stuff before doing anything)
+# workspace, utente, numCanali
+# CANALI IN db.Lasck.canali (used to store messages inside channels)
+# numCanale, autore, messaggio, ora
 
 
 import os
 import pprint
 import pymongo
 from flask import g, Flask, flash, render_template, redirect, request, session, url_for, jsonify
-from random import randint
 from pymongo import MongoClient
 
 #Collect database method
@@ -75,8 +75,13 @@ def create_app(test_config=None):
       flash(error)
     return render_template('signin.html')
 
-  #Main chat
-  @app.route('/main')
+
+  # UTENTI IN db.Lasck.utenti (used for the registration/login form)
+  # email, username, workspace, nick, password
+  # CANALI IN db.Lasck.canali (used to store messages inside channels)
+  # workspace, numCanale, autore, messaggio, ora
+  #Main chat ---------------------------------------------------------
+  @app.route('/main', methods=['GET','POST'])
   def main():
     db=get_db()
     user = session.get('key')
@@ -84,12 +89,16 @@ def create_app(test_config=None):
     g.work= docu['workspace']
     g.user= docu['username']
 
-    # If chat never existed, create it
-    if db.chat.find_one({'workspace':g.work})
-      #Create workspace document 
+    #Get list of users to put in purple bar
+    g.listUser = db.utenti.find({'workspace':docu['workspace']})
+
+    if request.method['POST']:
+      # Add new message in that channel
+      messaggio = request_form['chat']
 
     return render_template('main.html')
 
+  #-------------------------------------------------------------------
   #Methods for creating a workspace
   #Form with mail
   @app.route('/register', methods=['GET','POST'])
@@ -114,18 +123,16 @@ def create_app(test_config=None):
       #Check that user is registered in Lasck + check that workspace exists
       if documento is not None:
         error="ERROR: This user is already in the workspace!"
-      elif checkpwd is None:
+      elif checkpwd is None and documento is not None:
         error="ERROR: Wrong password!"
       if error is None:
+        db.utenti.insert({"email":email, "username":username,"workspace":workspace, "nick":nick, "password":password})
+        print("Added following document:")
+        pprint.pprint(db.utenti.find_one({"email":email,"workspace":workspace}))
         return redirect(url_for('signIn'))
      
-      flash(error)
-
-      db = get_db()
-      db.utenti.insert({"email":email, "username":username,"workspace":workspace, "nick":nick, "password":password})
-      print("Added following document:")
-      pprint.pprint(db.utenti.find_one({"email":email,"workspace":workspace}))
-      return redirect(url_for('signIn'))
+      else:
+        flash(error)
     return render_template('register.html')
  
 
@@ -133,7 +140,7 @@ def create_app(test_config=None):
   def nuke():
     db = get_db()
     db.utenti.remove({})
-    db.chat.remove({})
+    db.canali.remove({})
     return "Collezioni eliminate!"
 
 
