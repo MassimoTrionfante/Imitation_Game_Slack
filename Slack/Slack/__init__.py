@@ -1,10 +1,14 @@
-# UTENTI CONTENUTI IN db.Lasck.utenti
-# CHAT CONTENUTA IN db.Lasck.chat
+# UTENTI IN db.Lasck.utenti
+# email, username, workspace, nick, password
+
+# CHAT IN db.Lasck.chat
+# workspace, utenti, messaggi, ora
+
 
 import os
 import pprint
 import pymongo
-from flask import Flask, flash, render_template, redirect, request, session, url_for, jsonify
+from flask import g, Flask, flash, render_template, redirect, request, session, url_for, jsonify
 from random import randint
 from pymongo import MongoClient
 
@@ -50,6 +54,7 @@ def create_app(test_config=None):
       work = db.utenti.find_one({'workspace':workspace})
       documento = db.utenti.find_one({'email':email,'workspace':workspace})
       checkpwd = db.utenti.find_one({'email':email,'workspace':workspace,'password':password})
+      userId = db.utenti.find_one({'email':email,'workspace':workspace,'password':password})
       #Check that user is registered in Lasck + check that workspace exists
       if user is None:
         error= "ERROR: User does not exist!"
@@ -62,7 +67,9 @@ def create_app(test_config=None):
       elif checkpwd is None:
         error= "ERROR: Password is incorrect!"
 
-      if error is None:                  #TODO aggiungi robe oggetto session + oggetto "g" per mantenere variabili
+      if error is None:
+        session.clear()
+        session['key']= userId['email']
         return redirect(url_for('main'))
      
       flash(error)
@@ -71,6 +78,16 @@ def create_app(test_config=None):
   #Main chat
   @app.route('/main')
   def main():
+    db=get_db()
+    user = session.get('key')
+    docu = db.utenti.find_one({'email':user})
+    g.work= docu['workspace']
+    g.user= docu['username']
+
+    # If chat never existed, create it
+    if db.chat.find_one({'workspace':g.work})
+      #Create workspace document 
+
     return render_template('main.html')
 
   #Methods for creating a workspace

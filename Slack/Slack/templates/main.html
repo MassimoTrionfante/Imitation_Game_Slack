@@ -6,7 +6,7 @@
 <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='main.css')}}">
 </head>
-<body onload="settaDomain()">
+<body>
 
 <!-- Robe della notifica desktop -->
 
@@ -48,6 +48,7 @@ Lasck&nbspneeds&nbspyour&nbsppermission&nbspto&nbsp<u style="cursor:pointer">ena
 <span class="cella">
 
 <span id="nomedomain" style="font-size:15px; padding: 12px 12px;">
+{{ g.work }}
 </span>
 <span class="tranico">
 &#9207
@@ -58,11 +59,11 @@ Lasck&nbspneeds&nbspyour&nbsppermission&nbspto&nbsp<u style="cursor:pointer">ena
 </span>
 <br>
 
-<span class="activitydot">
-<span id="activitydot" style="color: #00F0C0; opacity:0.5">
-&#x25CF</span> <b><span id="nomeUtente">NomeUtente</span></b>
-</span>
-</span>
+  <span class="activitydot">
+  <span id="activitydot" style="color: #00F0C0; opacity:0.5">
+  &#x25CF</span> <b><span >{{ g.user }}</span></b>
+  </span>
+  </span>
 <br>
 <span class="cella" style="font-size:15px; padding: 5px 15px;">
 <b><span class="fa fa-comment"></span> All Threads</b>
