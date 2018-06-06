@@ -3,7 +3,7 @@
 # CHAT IN db.Lasck.chat (used for loading stuff before doing anything)
 # workspace, utente, numCanali
 # CANALI IN db.Lasck.canali (used to store messages inside channels)
-# numCanale, autore, messaggio, ora
+# workspace, numCanale, autore, messaggio, ora
 
 
 import os
@@ -70,7 +70,9 @@ def create_app(test_config=None):
 
       if error is None:
         session.clear()
-        session['key']= userId['email']
+        session['user']= userId['username']
+        session['email']= userId['email']
+        session['work']= userId['workspace']
         return redirect(url_for('main'))
      
       flash(error)
@@ -85,16 +87,16 @@ def create_app(test_config=None):
   @app.route('/main', methods=['GET','POST'])
   def main():
     db=get_db()
-    user = session.get('key')
-    docu = db.utenti.find_one({'email':user})
-    g.work= docu['workspace']
-    g.user= docu['username']
+    user = session.get('user')
+    workspace = session.get('work')
+    g.work= workspace
+    g.user= user
 
-    g.channelMessages = db.canali.find({'workspace':docu['workspace'],'numCanale':1})
+    g.channelMessages = db.canali.find({'workspace':workspace,'numCanale':1})
 
     #Get list of users to put in purple bar
-    g.listUser = db.utenti.find({'workspace':docu['workspace']})
-    g.countUser = db.utenti.find({'workspace':docu['workspace']}) 
+    g.listUser = db.utenti.find({'workspace':workspace})
+    g.countUser = db.utenti.find({'workspace':workspace}) 
     #Count users inside workspace
     g.numUsers=0
     for k in g.countUser:
@@ -105,7 +107,7 @@ def create_app(test_config=None):
       # Add new message in that channel
       messaggio = request.form['chat']
       if len(messaggio) > 0:
-        db.canali.insert({"workspace":docu['workspace'],'numCanale':1,'autore':docu['username'],'messaggio':messaggio,'ora':time.strftime('%H:%M:%S')})
+        db.canali.insert({"workspace":workspace,'numCanale':1,'autore':user,'messaggio':messaggio,'ora':time.strftime('%H:%M:%S')})
 
     return render_template('main.html')
 
@@ -121,7 +123,7 @@ def create_app(test_config=None):
       workspace=request.form['workspace']
       password=request.form['password']
 
-      if nick is None:
+      if nick is None: #This if somehow doesn't work w/e
         nick=request.form['username'] #Nick will be username if nick is null
 
       #Do various checks before adding to DB:
