@@ -104,7 +104,8 @@ def create_app(test_config=None):
     if request.method=='POST':
       # Add new message in that channel
       messaggio = request.form['chat']
-      db.canali.insert({"workspace":docu['workspace'],'numCanale':1,'autore':docu['username'],'messaggio':messaggio,'ora':time.strftime('%H:%M:%S')})
+      if len(messaggio) > 0:
+        db.canali.insert({"workspace":docu['workspace'],'numCanale':1,'autore':docu['username'],'messaggio':messaggio,'ora':time.strftime('%H:%M:%S')})
 
     return render_template('main.html')
 
