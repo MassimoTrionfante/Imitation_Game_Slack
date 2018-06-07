@@ -12,6 +12,7 @@ import pymongo
 import time
 from flask import g, Flask, flash, render_template, redirect, request, session, url_for, jsonify
 from pymongo import MongoClient
+from bson.json_util import dumps
 
 #Collect database method
 def get_db():
@@ -188,5 +189,22 @@ def create_app(test_config=None):
       return "Error: wrong password!"
     else:
       return "OK"
+
+  #Get user name depending on the mail used and on the workspace
+  @app.route('/getUserName/<workspace>/<email>', methods=['POST'])
+  def getName(workspace, email):
+    db=get_db()
+    utente = db.utenti.find_one({'email':email,'workspace':workspace})
+    if utente is None:
+      return 'NO_USER'
+    return utente['username']
+  
+  #Get the list of users from that workspace
+  @app.route('/getListUsers/<workspace>',methods=['POST'])
+  def getListUsers(workspace):
+    db=get_db()
+    mieiUtenti = db.utenti.find({'workspace':workspace},{'_id':0,'email':0,'password':0,'workspace':0,'nick':0})
+    return dumps(mieiUtenti)
+
 
   return app
