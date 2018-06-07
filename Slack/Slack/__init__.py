@@ -156,5 +156,37 @@ def create_app(test_config=None):
     db.canali.remove({})
     return "Collezioni eliminate!"
 
+#................From here on, only POST methods, used as interface for phone
+#app of Slack................................................................
+
+  #Check workspace
+  @app.route('/checkWorkspace/<workspace>', methods=['POST'])
+  def checkwork(workspace):
+    db=get_db()
+    hasWork = db.utenti.find_one({'workspace':workspace})
+    if hasWork is None:
+      return "Error: this workspace doesn't exist!"
+    else:
+      return "OK"
+
+  #Check mail inside the workspace
+  @app.route('/checkMail/<workspace>/<email>', methods=['POST'])
+  def checkmail(workspace, email):
+    db = get_db()
+    hasMail = db.utenti.find_one({'email':email,'workspace':workspace})
+    if hasMail is None:
+      return "Error: this user isn't registered in this workspace!"
+    else:
+      return "OK"
+
+  #Check password inside the recognized user + workspace activity
+  @app.route('/checkPass/<workspace>/<password>', methods=['POST'])
+  def checkpass(workspace, password):
+    db=get_db()
+    hasPass = db.utenti.find_one({'workspace':workspace,'password':password})
+    if hasPass is None:
+      return "Error: wrong password!"
+    else:
+      return "OK"
 
   return app
