@@ -206,5 +206,11 @@ def create_app(test_config=None):
     mieiUtenti = db.utenti.find({'workspace':workspace},{'_id':0,'email':0,'password':0,'workspace':0,'nick':0})
     return dumps(mieiUtenti)
 
+  #Get the chat log, given the workspace
+  @app.route('/getChat/<workspace>',methods=['POST'])
+  def getChat(workspace):
+    db=get_db()
+    return dumps(db.canali.find({'workspace':workspace}))
+    # workspace, numCanale, autore, messaggio, ora
 
   return app
