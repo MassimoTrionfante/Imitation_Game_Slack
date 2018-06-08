@@ -210,7 +210,15 @@ def create_app(test_config=None):
   @app.route('/getChat/<workspace>',methods=['POST'])
   def getChat(workspace):
     db=get_db()
-    return dumps(db.canali.find({'workspace':workspace}))
+    return dumps( db.canali.find({'workspace':workspace}).sort('_id',-1) )
     # workspace, numCanale, autore, messaggio, ora
+
+  #Get a message from phone app and add it to the DB
+  # <msg> is a JSON file containing all the words of the message
+  @app.route('/sendMessage/<workspace>/<user>/<msg>',methods=['POST'])
+  def givemsg(workspace,user,msg):
+    db=get_db()
+    db.canali.insert({"workspace":workspace,'numCanale':1,'autore':user,'messaggio':msg,'ora':time.strftime('%H:%M:%S')})
+    return "OK"
 
   return app
